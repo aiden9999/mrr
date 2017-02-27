@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="informat">
+	<insert id="write" parameterType="java.util.HashMap">
+		insert into
+		mrr_informat(title, content, id, nick, file, filename, day, count)
+		values(#{title}, #{content},  #{id}, #{nick}, #{uuid}, #{fileName}, now(), 0)
+	</insert>
+	<select id="informatList" resultType="java.util.HashMap">
+		select * from mrr_informat order by auto desc limit 10 offset #{page}
+	</select>
+	<select id="informatNew" resultType="java.util.HashMap">
+		select * from mrr_informat order by auto desc limit 3 offset 0
+	</select>
+	<select id="informatView" resultType="java.util.HashMap">
+		select * from mrr_informat where auto = #{num}
+	</select>
+	<insert id="fileUpload" parameterType="java.util.HashMap">
+		insert into
+		mrr_informatFile(id, uuid, filename, down)
+		values(#{id}, #{uuid}, #{fileName}, 0)
+	</insert>
+	<select id="informatCount" resultType="java.lang.Integer">
+		select count(*) from mrr_informat
+	</select>
+	<update id="modify" parameterType="java.util.HashMap">
+		update mrr_informat set title = #{title}, content = #{content} where auto = #{num}
+	</update>
+	<delete id="delete">
+		delete from mrr_informat where auto = #{num}
+	</delete>
+	<select id="informatOne" resultType="java.util.HashMap">
+		select * from mrr_informat where auto = #{num}
+	</select>
+	<update id="countUp">
+		update mrr_informat set count = count+1 where auto = #{num}
+	</update>
+</mapper>

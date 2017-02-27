@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="activity">
+	<insert id="write" parameterType="java.util.HashMap">
+		insert into
+		mrr_activity(title, content, id, nick, file1, filename1, file2, filename2, file3, filename3, file4, filename4, file5, filename5, day, count)
+		values(#{title}, #{content},  #{id}, #{nick}, #{uuid1}, #{fileName1}, #{uuid2}, #{fileName2}, #{uuid3}, #{fileName3},
+					#{uuid4}, #{fileName4}, #{uuid5}, #{fileName5}, now(), 0)
+	</insert>
+	<select id="activityList" resultType="java.util.HashMap">
+		select * from mrr_activity order by auto desc limit 9 offset #{page}
+	</select>
+	<select id="activityView" resultType="java.util.HashMap">
+		select * from mrr_activity where auto = #{num}
+	</select>
+	<insert id="fileUpload" parameterType="java.util.HashMap">
+		insert into
+		mrr_activityFile(id, uuid, filename)
+		values(#{id}, #{uuid}, #{fileName})
+	</insert>
+	<select id="activityCount" resultType="java.lang.Integer">
+		select count(*) from mrr_activity
+	</select>
+	<update id="modify" parameterType="java.util.HashMap">
+		update mrr_activity set title = #{title}, content = #{content}, file1 = #{uuid1}, filename1 = #{fileName1}, file2 = #{uuid2},
+		filename2 = #{fileName2}, file3 = #{uuid3}, filename3 = #{fileName3}, file4 = #{uuid4}, filename4 = #{fileName4},
+		file5 = #{uuid5}, filename5 = #{fileName5} where auto = #{auto}
+	</update>
+	<delete id="delete">
+		delete from mrr_activity where auto = #{num}
+	</delete>
+	<select id="activityOne" resultType="java.util.HashMap">
+		select * from mrr_activity where auto = #{num}
+	</select>
+	<select id="activityMain" resultType="java.util.HashMap">
+		select * from mrr_activity order by auto desc limit 50 offset 0
+	</select>
+</mapper>
