@@ -97,7 +97,7 @@
                     <section class="section02">
                         <div class="info_wrap">
                             <div class="info_tit">주소</div>
-                            <div class="info_txt">서울시 강남구 삼성동 141-26 EK타워 4층 미래로입시컨설팅</div>
+                            <div class="info_txt">서울시 강남구 테헤란로 407 EK타워 4층 미래로입시컨설팅</div>
                         </div>
                         <div class="info_wrap">
                             <div class="info_tit">찾아오시는길</div>

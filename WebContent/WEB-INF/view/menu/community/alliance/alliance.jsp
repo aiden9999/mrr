@@ -53,32 +53,28 @@
                             </div>
                             <div class="input_wrapper">
                                 <div class="input_wrap">
-                                    <div class="input_tit">
-                                        성함
-                                    </div>
+                                    <div class="input_tit">성함</div>
                                     <input type="text" id="name">
                                 </div>
                                 <div class="input_wrap">
-                                    <div class="input_tit">
-                                        전화번호
-                                    </div>
+                                    <div class="input_tit">전화번호</div>
                                     <input type="text" id="phone">
                                 </div>
                                 <div class="input_wrap">
-                                    <div class="input_tit">
-                                        메일주소
-                                    </div>
+                                    <div class="input_tit">메일주소</div>
                                     <input type="text" id="mail">
                                 </div>
                                 <div class="input_wrap">
-                                    <div class="input_tit">
-                                        문의내용
-                                    </div>
-                                    <textarea></textarea>
+                                    <div class="input_tit">제목</div>
+                                    <input type="text" id="title">
+                                </div>
+                                <div class="input_wrap">
+                                    <div class="input_tit">문의내용</div>
+                                    <textarea id="content"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="send_btn">
+                        <div class="send_btn" onclick="send()">
                             <div class="txt">보 내 기</div>
                         </div>
                     </section>
@@ -94,4 +90,29 @@
         	<c:import url="/WEB-INF/view/main/footer.jsp"/>
         </footer>
     </body>
+    
+    <script>
+    	// 메일보내기
+    	function send(){
+    		var name = $("#name").val();
+    		var phone = $("#phone").val();
+    		var mail = $("#mail").val();
+    		var title = $("#title").val();
+    		var content = $("#content").val();
+    		$.ajax({
+    			type : "post",
+    			url : "/alliance/email/"+name+"/"+phone+"/"+mail+"/"+title+"/"+content,
+    			async : false,
+    			success : function(txt){
+    				if(txt){
+    					alert("전송되었습니다.");
+    					location.reload();
+    				} else {
+    					alert("전송에 실패하였습니다.\n잠시후 다시 시도해주세요.");
+    				}
+    			}
+    		});
+    	}
+    </script>
+    
 </html>

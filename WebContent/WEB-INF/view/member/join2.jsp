@@ -314,7 +314,7 @@
     	// 회원가입
     	function join(){
     		var id = $("#id").val();
-    		var name = $("#name").val();
+    		var name = $("#name").html();
     		var nick = $("#nick").val();
     		var pw = $("#pw").val();
     		var pw1 = $("#pw1").val();
@@ -350,7 +350,7 @@
     				email = email1+"@"+email2;
     				$.ajax({
     					type : "post",
-    					url : "/member/join/"+id+"/심청이/"+nick+"/"+pw+"/"+addr1+"/"+addr2+"/"+phone+"/"+agreeSms+"/"+agreeEmail+"?email="+email,
+    					url : "/member/join/"+id+"/"+name+"/"+nick+"/"+pw+"/"+addr1+"/"+addr2+"/"+phone+"/"+agreeSms+"/"+agreeEmail+"?email="+email,
     					async : false,
     					success : function(txt){
     						if(txt){
